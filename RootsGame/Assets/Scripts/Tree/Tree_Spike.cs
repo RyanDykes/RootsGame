@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Tree_Spike : TreeAbilities
 {
-    public bool IsActive { get; set; } = false;
-
     [SerializeField] private List<Transform> impaleTransforms = null;
 
     private Coroutine enemyCoroutine = null;
