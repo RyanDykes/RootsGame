@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 713406912952779668}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ImpaleTransform (2)
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 8045421403005521513}
   - component: {fileID: 1023626625038784431}
   - component: {fileID: 3404864816726268485}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5083710271372872616}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ImpaleTransform (3)
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -164,7 +164,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6437740712490393647}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ImpaleTransform
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 479250684720808507}
   - component: {fileID: 3620591553579672174}
   - component: {fileID: 4289998103881586261}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: pfb_Spike_Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,7 +301,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3023355278759369}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ImpaleTransforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +335,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3541697577329603389}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ImpaleTransform (1)
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -365,7 +365,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8917731104452296604}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -400,7 +400,7 @@ GameObject:
   - component: {fileID: 5244268072428924292}
   - component: {fileID: 2150363545299318458}
   - component: {fileID: 2605184081560358995}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

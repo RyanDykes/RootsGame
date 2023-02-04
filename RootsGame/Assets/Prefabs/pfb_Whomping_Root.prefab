@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2260365837499596343}
   - component: {fileID: 5024150211134700473}
   - component: {fileID: 2606158260382376575}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5898709373786491468}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 801727903122138843}
   - component: {fileID: 7122772501210814548}
   - component: {fileID: 4020001001130476394}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 6988119418132595464}
   - component: {fileID: 1267599841776444293}
   - component: {fileID: 6988119418132595466}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: pfb_Whomping_Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +335,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7344880509159282787}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GrabIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 7344880509573355717}
   - component: {fileID: 7344880509573355714}
   - component: {fileID: 7344880509573355715}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +449,7 @@ GameObject:
   - component: {fileID: 7344880509688133694}
   - component: {fileID: 7344880509688133691}
   - component: {fileID: 7344880509688133692}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -529,7 +529,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7344880509788140839}
   - component: {fileID: 7344880509788140838}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Circular_edge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -610,7 +610,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7344880510418120057}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GrabTransform
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -642,7 +642,7 @@ GameObject:
   - component: {fileID: 7344880511162171822}
   - component: {fileID: 7344880511162171819}
   - component: {fileID: 7344880511162171820}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
