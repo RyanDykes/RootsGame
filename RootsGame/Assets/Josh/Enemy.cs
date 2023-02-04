@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     private bool isCurrentlyColliding = false;
 
     private float _lastAttackAt = 0.0f;
+    private GameObject _flower;
 
     public bool IsDead { get; set; } = false;
 
@@ -67,39 +68,24 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                var delta = Time.time - _lastAttackAt;
-                if (delta >= _attackCoolDown)
-                {
-                    _lastAttackAt = Time.time;
-                    DealDamage();
-                }
+                AttackTree();
             }
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        var name = collision.gameObject.name;
-        Debug.Log("Entered collider with: " + name);
-        isCurrentlyColliding = true;
 
-        switch (name)
+        if (other.CompareTag("Flower"))
         {
-            case "Tree":
-                DealDamage();
-                break;
-            case "Spikes":
-                break;
-            case "Wall":
-                break;
-            default:
-                return;
+            isCurrentlyColliding = true;
+            _flower = other.gameObject;
+            Invoke(nameof(AttackFlower), 3.0f);
         }
     }
 
-    void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Leaving collider with: " + collision.gameObject.name);
         isCurrentlyColliding = false;
     }
 
@@ -121,7 +107,28 @@ public class Enemy : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, randomizedTarget, movementSpeed * Time.deltaTime);
     }
 
-    public void DealDamage()
+    private void AttackTree()
+    {
+        var delta = Time.time - _lastAttackAt;
+        if (delta >= _attackCoolDown)
+        {
+            _lastAttackAt = Time.time;
+            DealDamageToTree();
+        }
+    }
+
+    private void AttackFlower()
+    {
+        DealDamageToFlower();
+    }
+
+    public void DealDamageToFlower()
+    {
+        Destroy(_flower);
+        isCurrentlyColliding = false;
+    }
+
+    public void DealDamageToTree()
     {
         PlayerSingleton.Instance.TakeDamage(AttackPower);
     }
