@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class PointerController : MonoBehaviour
+public class PointerController : MonoBehaviour, IPointerClickHandler
 {
     private Camera mainCam = null;
     private Plane groundPlane;
@@ -17,16 +18,31 @@ public class PointerController : MonoBehaviour
         groundPlane = new Plane(Vector3.up, Vector3.zero);
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        //-1 = Left mouse click
+        if (eventData.pointerId != -1)
+            return;
+
+        Ray ray = mainCam.ScreenPointToRay(eventData.position);
+        if (TreeController.Instance.IsAbilityActive)
+        {
+            if (groundPlane.Raycast(ray, out float hitPoint))
+                TreeController.Instance.SpawnAbility(ray.GetPoint(hitPoint));
+        }
+    }
+
+    Vector3 previousMousePosition = Vector3.zero;
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
+            previousMousePosition = Input.mousePosition;
+
+        if (Input.GetMouseButton(1))
         {
-            if (TreeController.Instance.IsAbilityActive)
-            {
-                Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
-                if (groundPlane.Raycast(ray, out float hitPoint))
-                    TreeController.Instance.SpawnAbility(ray.GetPoint(hitPoint));
-            }
+            float dragAmount = (Input.mousePosition.x - previousMousePosition.x);
+            CameraController.Instance.RotateCamera(dragAmount);
+            previousMousePosition = Input.mousePosition;
         }
     }
 }

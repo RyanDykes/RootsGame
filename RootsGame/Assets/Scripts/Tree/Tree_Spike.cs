@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Tree_Spike : TreeAbilities
 {
-    public bool IsActive { get; set; } = false;
-
     [SerializeField] private List<Transform> impaleTransforms = null;
 
+    private List<Enemy> impaledEnemies = new List<Enemy>();
+
+    private Coroutine destroyCoroutine = null;
     private Coroutine enemyCoroutine = null;
 
     public override void Spawn(Vector3 spawnPosition)
@@ -35,11 +36,46 @@ public class Tree_Spike : TreeAbilities
             transform.position = Vector3.Lerp(startPosition, targetPosition, spawnCurve.Evaluate(T)) + (Mathf.Sin(Mathf.PI * T) * heightMultiplier * Vector3.up);
             transform.localScale = baseScale + (Mathf.Sin(Mathf.PI * T) * scaleMultiplier * Vector3.up);
 
+            IsActive = T < 0.4f;
+
             time += Time.deltaTime;
             yield return null;
         }
 
         IsActive = false;
+        transform.position = targetPosition;
+        transform.localScale = Vector3.one;
+
+        if (destroyCoroutine != null) StopCoroutine(destroyCoroutine);
+        destroyCoroutine = StartCoroutine(DestroyCoroutine());
+    }
+
+    readonly WaitForSeconds destroyDelay = new WaitForSeconds(1f);
+    private IEnumerator DestroyCoroutine()
+    {
+        yield return destroyDelay;
+
+        float time = 0f;
+        float duration = 0.2f;
+        Vector3 startPosition = transform.position;
+        Vector3 targetPosition = transform.position + (spawnOffset);
+
+        while (time < duration)
+        {
+            float T = time / duration;
+            transform.position = Vector3.Lerp(startPosition, targetPosition, T);
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        for(int i = 0; i < impaledEnemies.Count; i++)
+        {
+            Destroy(impaledEnemies[i].gameObject);
+        }
+        
+        Destroy(gameObject);
+        //RD_NOTE: SPAWN SKULL AND REMOVE ENEMY
     }
 
     private void OnTriggerEnter(Collider other)
@@ -49,7 +85,14 @@ public class Tree_Spike : TreeAbilities
 
         if (other.CompareTag("Enemy"))
         {
-            //RD_TODO: Add enemy call to stop moving
+            Enemy enemy = other.transform.GetComponent<Enemy>();
+
+            if (enemy.IsDead)
+                return;
+
+            impaledEnemies.Add(enemy);
+            enemy.IsDead = true;
+
             Transform impaleTransform = impaleTransforms[Random.Range(0, impaleTransforms.Count)];
             if (enemyCoroutine != null) StopCoroutine(enemyCoroutine);
             enemyCoroutine = StartCoroutine(SetPlayerPositionCoroutine(other.transform, impaleTransform));
