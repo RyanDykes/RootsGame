@@ -145,8 +145,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 1
   AttackPower: 1
-  MinMovementSpeed: 0.5
-  MaxMovementSpeed: 1
+  MinMovementSpeed: 1
+  MaxMovementSpeed: 2
   ExpReward: 10
   changeInterval: 0.1
   offsetAmount: 10

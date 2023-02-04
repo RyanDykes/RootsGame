@@ -38,7 +38,6 @@ public class Enemy : MonoBehaviour
         targetObject = GameObject.Find(targetName);
         if (targetObject != null)
         {
-            Debug.Log("Object found: " + targetObject.name);
             target = targetObject.transform.position;
         }
         else
@@ -49,27 +48,19 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (target == null)
-        {
-            Debug.Log("No target!");
-            return;
-        }
-        if (IsDead)
+        if (target == null || IsDead || PlayerSingleton.Instance.GamePaused || isCurrentlyColliding)
         {
             return;
         }
 
-        if (!isCurrentlyColliding)
+        var distanceToTree = Vector3.Distance(transform.position, target);
+        if (distanceToTree > _stopDistance)
         {
-            var distanceToTree = Vector3.Distance(transform.position, target);
-            if (distanceToTree > _stopDistance)
-            {
-                MoveTowardsTree();
-            }
-            else
-            {
-                AttackTree();
-            }
+            MoveTowardsTree();
+        }
+        else
+        {
+            AttackTree();
         }
     }
 

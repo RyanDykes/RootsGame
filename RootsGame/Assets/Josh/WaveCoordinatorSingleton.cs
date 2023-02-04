@@ -35,7 +35,6 @@ public class WaveCoordinatorSingleton : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("Awake: " + nameof(WaveCoordinatorSingleton));
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -100,14 +99,36 @@ public class WaveCoordinatorSingleton : MonoBehaviour
         _inWave = true;
         WaveCounter.text = "Wave " + _wave;
         NextWaveIn.enabled = false;
+
         _totalSpawners = GameObject.FindGameObjectsWithTag("Respawn").Length;
         _activeSpawners = _totalSpawners;
         _enemiesToSpawn += EnemiesPerWave * _wave;
+
+        var spawners = GameObject.FindGameObjectsWithTag("Respawn");
+        foreach (var spawner in spawners)
+        {
+            Hut hut = (Hut)spawner.GetComponent(typeof(Hut));
+            hut.StartSpawning();
+        }
+
         Debug.Log("_totalSpawners: " + _totalSpawners + ", _activeSpawners: " + _activeSpawners + ", enemiesToSpawn: " + _enemiesToSpawn);
     }
 
     private void CountDown()
     {
+        if (PlayerSingleton.Instance.GamePaused)
+        {
+            if (NextWaveIn.enabled)
+            {
+                NextWaveIn.enabled = false;
+            }
+            Invoke(nameof(CountDown), 1);
+        } 
+        else if (!NextWaveIn.enabled)
+        {
+            NextWaveIn.enabled = true;
+        }
+
         _countDown--;
         if (_countDown < 1)
         {
