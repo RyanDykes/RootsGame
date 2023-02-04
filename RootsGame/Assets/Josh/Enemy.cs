@@ -12,6 +12,9 @@ public class Enemy : MonoBehaviour
 
     private bool isCurrentlyColliding = false;
 
+    public bool IsDead { get; set; } = false;
+    private bool _despawning = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,10 +38,14 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        Debug.Log("Moving towards: " + targetObject.name);
-
-        if (!isCurrentlyColliding)
+        if (IsDead && !_despawning)
         {
+            _despawning = true;
+            Destroy(this, 3);
+        } 
+        else if (!isCurrentlyColliding)
+        {
+            Debug.Log("Moving towards: " + targetObject.name);
             transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
         }
     }
