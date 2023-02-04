@@ -35,8 +35,7 @@ public class Flower : MonoBehaviour, IPointerClickHandler
             return;
 
         PlayerSingleton.Instance.RecieveExp(100);
-        isReady = false;
-        experienceOrb.gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
     private IEnumerator GrowingDelayCoroutine()
