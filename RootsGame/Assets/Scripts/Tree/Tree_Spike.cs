@@ -92,6 +92,7 @@ public class Tree_Spike : TreeAbilities
 
             impaledEnemies.Add(enemy);
             enemy.IsDead = true;
+            enemy.GiveExperience();
 
             Transform impaleTransform = impaleTransforms[Random.Range(0, impaleTransforms.Count)];
             if (enemyCoroutine != null) StopCoroutine(enemyCoroutine);
