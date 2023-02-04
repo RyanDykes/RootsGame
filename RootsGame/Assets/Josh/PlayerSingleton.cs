@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,15 +6,19 @@ public class PlayerSingleton : MonoBehaviour
 {
     public static PlayerSingleton Instance { get; private set; }
 
+    // UI
+    public TextMeshProUGUI HealthUI;
+    public TextMeshProUGUI ExperienceUI;
+
     public int StartHealth = 100;
     public int Experience { get; set; }
     public int Health { get; set; }
-
 
     public void RecieveExp(int exp)
     {
         Debug.Log("Recieving exp: " + exp + ", current Experience: " + Experience);
         Experience += exp;
+        ExperienceUI.text = "Exp: " + Experience;
         Debug.Log("New _exp: " + Experience);
     }
 
@@ -23,6 +26,7 @@ public class PlayerSingleton : MonoBehaviour
     {
         Debug.Log("Dealing damage: " + damage + ", _health: " + Health);
         Health -= damage;
+        HealthUI.text = "Health: " + Health;
         Debug.Log("New health: " + Health);
 
         if (Health < 1)

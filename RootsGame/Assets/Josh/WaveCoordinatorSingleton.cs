@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class WaveCoordinatorSingleton : MonoBehaviour
 {
 
     public static WaveCoordinatorSingleton Instance { get; private set; }
+
+    // UI
+    public TextMeshProUGUI WaveCounter;
+    public TextMeshProUGUI NextWaveIn;
 
     // Enemies
     public GameObject Woodcutter;
@@ -13,10 +19,10 @@ public class WaveCoordinatorSingleton : MonoBehaviour
     public GameObject Flamethrower;
     public GameObject Poison;
 
-    public int TotalWaves { get; set; } = 10;
     public int EnemiesPerWave { get; set; } = 10;
     public int SecondsBetweenWave { get; set; } = 3;
 
+    private int _countDown = 0;
     private int _wave = 0;
     private bool _inWave = false;
 
@@ -63,34 +69,67 @@ public class WaveCoordinatorSingleton : MonoBehaviour
 
     public GameObject GetEnemy()
     {
+        if (_enemiesToSpawn < 1) return null;
+
         lock (_spawnLock)
         {
-            if (_enemiesToSpawn < 1) return null;
-
-            Debug.Log("Spawning _enemiesToSpawn: " + _enemiesToSpawn);
             _enemiesToSpawn--;
-            Debug.Log("Spawned _enemiesToSpawn: " + _enemiesToSpawn);
-
-            return Woodcutter;
         }
+
+        var availableEnemies = new List<GameObject> { Woodcutter };
+        if (_wave > 0)
+        {
+            availableEnemies.Add(Chainsaw);
+        }
+        if (_wave > 1)
+        {
+            availableEnemies.Add(Flamethrower);
+        }
+        if (_wave > 2)
+        {
+            availableEnemies.Add(Poison);
+        }
+
+        return availableEnemies[Random.Range(0, (availableEnemies.Count - 1))];
     }
 
     private void StartWave()
     {
-        _wave++;
         Debug.Log("Starting Wave: " + _wave);
+        _wave++;
         _inWave = true;
+        WaveCounter.text = "Wave " + _wave;
+        NextWaveIn.enabled = false;
         _totalSpawners = GameObject.FindGameObjectsWithTag("Respawn").Length;
         _activeSpawners = _totalSpawners;
-        _enemiesToSpawn = EnemiesPerWave * _wave;
+        _enemiesToSpawn += EnemiesPerWave * _wave;
         Debug.Log("_totalSpawners: " + _totalSpawners + ", _activeSpawners: " + _activeSpawners + ", enemiesToSpawn: " + _enemiesToSpawn);
+    }
+
+    private void CountDown()
+    {
+        _countDown--;
+        if (_countDown < 1)
+        {
+            Invoke(nameof(StartWave), 0);
+        }
+        else
+        {
+            NextWaveIn.text = "Next wave in\n" + _countDown + "s";
+            Invoke(nameof(CountDown), 1);
+        }
     }
 
     private void FinishWave()
     {
         Debug.Log("Wave Finished: " + _wave);
+
         _inWave = false;
-        Invoke(nameof(StartWave), SecondsBetweenWave);
+        _countDown = SecondsBetweenWave;
+        NextWaveIn.enabled = true;
+        NextWaveIn.text = "Next wave in\n" + SecondsBetweenWave + "s";
+        Invoke(nameof(CountDown), 1);
+
         Debug.Log("New wave in: " + SecondsBetweenWave);
     }
 

@@ -92,9 +92,10 @@ GameObject:
   - component: {fileID: 1021709603223162154}
   - component: {fileID: 1021709603223162133}
   - component: {fileID: 1021709603223162132}
+  - component: {fileID: 6079068242963684680}
   m_Layer: 0
   m_Name: pfb_Flower
-  m_TagString: Untagged
+  m_TagString: Flower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,6 +168,19 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &6079068242963684680
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021709603223162135}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.7, y: 1, z: 1.7}
+  m_Center: {x: 0, y: 1, z: 0.1}
 --- !u!1 &1021709603981508699
 GameObject:
   m_ObjectHideFlags: 0
