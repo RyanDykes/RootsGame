@@ -47,4 +47,3 @@ MonoBehaviour:
   Chainsaw: {fileID: 5143095927897100510, guid: d6c6a21758523d34a82c10d390016be5, type: 3}
   Flamethrower: {fileID: 5143095927897100510, guid: 1f77d494bd1b12c42954695e4d79c2b0, type: 3}
   Poison: {fileID: 5143095927897100510, guid: 422d54e05181f6149ae982e20f4231ab, type: 3}
-  TreeProtector: {fileID: 5143095927897100510, guid: b20cac88489c9374288564ada6ffbc8a, type: 3}

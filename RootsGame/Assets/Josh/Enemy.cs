@@ -13,7 +13,6 @@ public class Enemy : MonoBehaviour
     private bool isCurrentlyColliding = false;
 
     private float _lastAttackAt = 0.0f;
-    private bool _despawning = false;
 
     public bool IsDead { get; set; } = false;
     public int Health { get; set; }
@@ -35,33 +34,33 @@ public class Enemy : MonoBehaviour
         {
             Health = 1;
             AttackPower = 1;
-            MinMovementSpeed = 1.0f;
-            MaxMovementSpeed = 1.5f;
-            ExpReward = 1;
+            MinMovementSpeed = 0.5f;
+            MaxMovementSpeed = 1.0f;
+            ExpReward = 10;
         }
         else if (type.StartsWith("chainsaw"))
         {
             Health = 2;
             AttackPower = 1;
-            MinMovementSpeed = 1.0f;
-            MaxMovementSpeed = 1.5f;
-            ExpReward = 2;
+            MinMovementSpeed = 0.5f;
+            MaxMovementSpeed = 1.0f;
+            ExpReward = 10;
         }
         else if (type.StartsWith("flamethrower"))
         {
             Health = 3;
             AttackPower = 1;
-            MinMovementSpeed = 1.0f;
-            MaxMovementSpeed = 1.5f;
-            ExpReward = 3;
+            MinMovementSpeed = 0.5f;
+            MaxMovementSpeed = 1.0f;
+            ExpReward = 10;
         }
         else if (type.StartsWith("poison"))
         {
             Health = 4;
             AttackPower = 1;
-            MinMovementSpeed = 1.0f;
-            MaxMovementSpeed = 1.5f;
-            ExpReward = 4;
+            MinMovementSpeed = 0.5f;
+            MaxMovementSpeed = 1.0f;
+            ExpReward = 10;
         }
 
         targetObject = GameObject.Find(targetName);
@@ -83,12 +82,12 @@ public class Enemy : MonoBehaviour
             Debug.Log("No target!");
             return;
         }
-
-        if (IsDead && !_despawning)
+        if (IsDead)
         {
-            Die();
-        } 
-        else if (!isCurrentlyColliding)
+            return;
+        }
+
+        if (!isCurrentlyColliding)
         {
             var distanceToTree = Vector3.Distance(transform.position, target.position);
             if (distanceToTree > _stopDistance)
@@ -145,11 +144,13 @@ public class Enemy : MonoBehaviour
         PlayerSingleton.Instance.TakeDamage(AttackPower);
     }
 
-    public void Die()
+    public void GiveExperience()
     {
-        _despawning = true;
         PlayerSingleton.Instance.RecieveExp(ExpReward);
-        Destroy(gameObject, 0.3f);
     }
 
+    public void Die(float time)
+    {
+        Destroy(gameObject, time);
+    }
 }
