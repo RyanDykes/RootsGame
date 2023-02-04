@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5143095927504250000}
   - component: {fileID: 5143095927504249999}
   - component: {fileID: 5143095927504249998}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 4357568566845387738}
   - component: {fileID: 1929914324}
   - component: {fileID: 1929914321}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Woodcutter
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 5143095928147253148}
   - component: {fileID: 5143095928147253147}
   - component: {fileID: 5143095928147253146}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 5143095928231072566}
   - component: {fileID: 5143095928231072565}
   - component: {fileID: 5143095928231072564}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
