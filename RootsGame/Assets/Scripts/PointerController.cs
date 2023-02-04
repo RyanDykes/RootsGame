@@ -1,17 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class PointerController : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class PointerController : MonoBehaviour
 {
-    public void OnPointerDown(PointerEventData eventData)
+    private Camera mainCam = null;
+    private Plane groundPlane;
+
+    private void Awake()
     {
-        
+        mainCam = Camera.main;
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    private void Start()
     {
-        
+        groundPlane = new Plane(Vector3.up, Vector3.zero);
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (TreeController.Instance.IsAbilityActive)
+            {
+                Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
+                if (groundPlane.Raycast(ray, out float hitPoint))
+                    TreeController.Instance.SpawnAbility(ray.GetPoint(hitPoint));
+            }
+        }
     }
 }
