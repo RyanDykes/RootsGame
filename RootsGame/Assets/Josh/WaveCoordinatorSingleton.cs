@@ -13,7 +13,6 @@ public class WaveCoordinatorSingleton : MonoBehaviour
     public GameObject Flamethrower;
     public GameObject Poison;
 
-    public int TotalWaves { get; set; } = 10;
     public int EnemiesPerWave { get; set; } = 10;
     public int SecondsBetweenWave { get; set; } = 3;
 
@@ -63,16 +62,28 @@ public class WaveCoordinatorSingleton : MonoBehaviour
 
     public GameObject GetEnemy()
     {
+        if (_enemiesToSpawn < 1) return null;
+
         lock (_spawnLock)
         {
-            if (_enemiesToSpawn < 1) return null;
-
-            Debug.Log("Spawning _enemiesToSpawn: " + _enemiesToSpawn);
             _enemiesToSpawn--;
-            Debug.Log("Spawned _enemiesToSpawn: " + _enemiesToSpawn);
-
-            return Woodcutter;
         }
+
+        var availableEnemies = new List<GameObject> { Woodcutter };
+        if (_wave > 0)
+        {
+            availableEnemies.Add(Chainsaw);
+        }
+        if (_wave > 1)
+        {
+            availableEnemies.Add(Flamethrower);
+        }
+        if (_wave > 2)
+        {
+            availableEnemies.Add(Poison);
+        }
+
+        return availableEnemies[Random.Range(0, (availableEnemies.Count - 1))];
     }
 
     private void StartWave()
@@ -82,7 +93,7 @@ public class WaveCoordinatorSingleton : MonoBehaviour
         _inWave = true;
         _totalSpawners = GameObject.FindGameObjectsWithTag("Respawn").Length;
         _activeSpawners = _totalSpawners;
-        _enemiesToSpawn = EnemiesPerWave * _wave;
+        _enemiesToSpawn += EnemiesPerWave * _wave;
         Debug.Log("_totalSpawners: " + _totalSpawners + ", _activeSpawners: " + _activeSpawners + ", enemiesToSpawn: " + _enemiesToSpawn);
     }
 

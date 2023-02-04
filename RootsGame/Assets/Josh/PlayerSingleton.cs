@@ -11,7 +11,6 @@ public class PlayerSingleton : MonoBehaviour
     public int Experience { get; set; }
     public int Health { get; set; }
 
-
     public void RecieveExp(int exp)
     {
         Debug.Log("Recieving exp: " + exp + ", current Experience: " + Experience);

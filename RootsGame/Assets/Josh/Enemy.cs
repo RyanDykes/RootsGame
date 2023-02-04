@@ -8,66 +8,37 @@ public class Enemy : MonoBehaviour
     private const float _attackCoolDown = 3.0f;
 
     private GameObject targetObject;
-    private Transform target;
+    private Vector3 target;
         
     private bool isCurrentlyColliding = false;
 
     private float _lastAttackAt = 0.0f;
 
     public bool IsDead { get; set; } = false;
-    public int Health { get; set; }
-    public int AttackPower { get; set; }
-    public float MinMovementSpeed { get; set; }
-    public float MaxMovementSpeed { get; set; }
-    public int ExpReward { get; set; }
+
+    public int Health = 1;
+    public int AttackPower = 1;
+    public float MinMovementSpeed = 0.5f;
+    public float MaxMovementSpeed = 1.0f;
+    public int ExpReward = 10;
+
+    public float changeInterval = 1.0f;
+    public float offsetAmount = 1.0f;
+    private float timer = 0;
 
     public Enemy()
     {
- 
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        var type = gameObject.name.ToLower();
-        if (type.StartsWith("woodcutter"))
-        {
-            Health = 1;
-            AttackPower = 1;
-            MinMovementSpeed = 0.5f;
-            MaxMovementSpeed = 1.0f;
-            ExpReward = 10;
-        }
-        else if (type.StartsWith("chainsaw"))
-        {
-            Health = 2;
-            AttackPower = 1;
-            MinMovementSpeed = 0.5f;
-            MaxMovementSpeed = 1.0f;
-            ExpReward = 10;
-        }
-        else if (type.StartsWith("flamethrower"))
-        {
-            Health = 3;
-            AttackPower = 1;
-            MinMovementSpeed = 0.5f;
-            MaxMovementSpeed = 1.0f;
-            ExpReward = 10;
-        }
-        else if (type.StartsWith("poison"))
-        {
-            Health = 4;
-            AttackPower = 1;
-            MinMovementSpeed = 0.5f;
-            MaxMovementSpeed = 1.0f;
-            ExpReward = 10;
-        }
-
         targetObject = GameObject.Find(targetName);
         if (targetObject != null)
         {
             Debug.Log("Object found: " + targetObject.name);
-            target = targetObject.transform;
+            target = targetObject.transform.position;
         }
         else
         {
@@ -89,7 +60,7 @@ public class Enemy : MonoBehaviour
 
         if (!isCurrentlyColliding)
         {
-            var distanceToTree = Vector3.Distance(transform.position, target.position);
+            var distanceToTree = Vector3.Distance(transform.position, target);
             if (distanceToTree > _stopDistance)
             {
                 MoveTowardsTree();
@@ -134,9 +105,20 @@ public class Enemy : MonoBehaviour
 
     public void MoveTowardsTree()
     {
-        Debug.Log("Moving towards: " + targetObject.name);
         var movementSpeed = Random.Range(MinMovementSpeed, MaxMovementSpeed);
-        transform.position = Vector3.MoveTowards(transform.position, target.position, movementSpeed * Time.deltaTime);
+        var randomizedTarget = target;
+        if (timer <= 0)
+        {
+            Vector3 randomOffset = new Vector3(Random.Range(-offsetAmount, offsetAmount), target.y, Random.Range(-offsetAmount, offsetAmount));
+            randomizedTarget += randomOffset;
+            timer = changeInterval;
+        }
+        else
+        {
+            timer -= Time.deltaTime;
+        }
+
+        transform.position = Vector3.MoveTowards(transform.position, randomizedTarget, movementSpeed * Time.deltaTime);
     }
 
     public void DealDamage()
