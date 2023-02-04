@@ -24,7 +24,7 @@ public class Flower : MonoBehaviour, IPointerClickHandler
         clickCollider.enabled = isReady;
     }
 
-    public void OnDestroy()
+    public void DestroyFlower()
     {
         Destroy(gameObject);
     }
@@ -35,7 +35,7 @@ public class Flower : MonoBehaviour, IPointerClickHandler
             return;
 
         PlayerSingleton.Instance.RecieveExp(100);
-        Destroy(gameObject);
+        DestroyFlower();
     }
 
     private IEnumerator GrowingDelayCoroutine()
