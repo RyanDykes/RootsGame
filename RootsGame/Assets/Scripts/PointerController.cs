@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class PointerController : MonoBehaviour, IPointerClickHandler
 {
+    public PointerEventData ActivePointerEventData = null;
+
     private Camera mainCam = null;
     private Plane groundPlane;
 
