@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Hut : MonoBehaviour
@@ -7,8 +5,7 @@ public class Hut : MonoBehaviour
     public float MinSpawnDelay = 3.0f;
     public float MaxSpawnDelay = 10.0f;
 
-    // Start is called before the first frame update
-    void Start()
+    public void StartSpawning()
     {
         Invoke(nameof(InstantiateObject), Random.Range(MinSpawnDelay, 0.0f));
     }
@@ -18,15 +15,15 @@ public class Hut : MonoBehaviour
         var enemy = WaveCoordinatorSingleton.Instance.GetEnemy();
         if (enemy != null)
         {
-            Instantiate(enemy, transform.position, transform.rotation);
+            if (!PlayerSingleton.Instance.GamePaused)
+            {
+                Instantiate(enemy, transform.position, transform.rotation);
+            }
             Invoke(nameof(InstantiateObject), Random.Range(MinSpawnDelay, MaxSpawnDelay));
         } 
         else
         {
             WaveCoordinatorSingleton.Instance.FinishSpawner();
-
-            // Inefficient have Wave Coordinator start this again
-            Invoke(nameof(InstantiateObject), Random.Range(MinSpawnDelay, MaxSpawnDelay));
         }
     }
 }
