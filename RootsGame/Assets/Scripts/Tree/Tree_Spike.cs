@@ -53,6 +53,8 @@ public class Tree_Spike : TreeAbilities
             Transform impaleTransform = impaleTransforms[Random.Range(0, impaleTransforms.Count)];
             if (enemyCoroutine != null) StopCoroutine(enemyCoroutine);
             enemyCoroutine = StartCoroutine(SetPlayerPositionCoroutine(other.transform, impaleTransform));
+
+            other.gameObject.GetComponent<Enemy>().IsDead = true;
         }
     }
 

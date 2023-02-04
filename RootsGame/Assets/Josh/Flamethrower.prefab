@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 1929914324}
   - component: {fileID: 1929914321}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Flamethrower
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2c136c9edc364418aa58e3dbd480ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damageToDeal: 1
 --- !u!136 &4357568566845387738
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -186,6 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2c136c9edc364418aa58e3dbd480ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damageToDeal: 1
 --- !u!1 &5143095928147253144
 GameObject:
   m_ObjectHideFlags: 0

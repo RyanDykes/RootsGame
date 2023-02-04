@@ -4,18 +4,29 @@ using UnityEngine;
 
 public class Hut : MonoBehaviour
 {
-
-    public GameObject enemy;
-    public int repeatRate = 3;
+    private float _minSpawnDelay = 3.0f;
+    private float _maxSpawnDelay = 10.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("InstantiateObject", 0, repeatRate);
+        Invoke(nameof(InstantiateObject), Random.Range(_minSpawnDelay, 0.0f));
     }
 
     void InstantiateObject()
     {
-        Instantiate(enemy, transform.position, transform.rotation);
+        var enemy = WaveCoordinatorSingleton.Instance.GetEnemy();
+        if (enemy != null)
+        {
+            Instantiate(enemy, transform.position, transform.rotation);
+            Invoke(nameof(InstantiateObject), Random.Range(_minSpawnDelay, _maxSpawnDelay));
+        } 
+        else
+        {
+            WaveCoordinatorSingleton.Instance.FinishSpawner();
+
+            // Inefficient have Wave Coordinator start this again
+            Invoke(nameof(InstantiateObject), Random.Range(_minSpawnDelay, _maxSpawnDelay));
+        }
     }
 }
