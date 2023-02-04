@@ -12,6 +12,7 @@ public class TreeController : MonoBehaviour
     [SerializeField] private List<TreeAbilities> unlockedTreeAbilities = null;
 
     private List<TreeAbilities> activeTreeAbilities = new List<TreeAbilities>();
+    
 
     private void Awake()
     {
