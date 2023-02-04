@@ -4,8 +4,22 @@ using UnityEngine;
 
 public class AbilityController : MonoBehaviour
 {
+    public static AbilityController Instance = null;
+
+    public AbilityOption ActiveAbilityOption { get; private set; } = null;
+
     [SerializeField] private List<AbilityOption> abilityOptions = null;
     [SerializeField] private List<TreeAbilities> allAbilities = null;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    private void OnDestroy()
+    {
+        Instance = null;
+    }
 
     private void Start()
     {
@@ -20,7 +34,36 @@ public class AbilityController : MonoBehaviour
             }
         }
 
+        SetActiveOption(abilityOptions[0]);
         TreeController.Instance.SetActiveAbility(abilityOptions[0].ActiveAbility);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            if (abilityOptions.Count < 1)
+                return;
+
+            SetActiveOption(abilityOptions[0]);
+            TreeController.Instance.SetActiveAbility(abilityOptions[0].ActiveAbility);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            if (abilityOptions.Count < 2)
+                return;
+
+            SetActiveOption(abilityOptions[1]);
+            TreeController.Instance.SetActiveAbility(abilityOptions[1].ActiveAbility);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if (abilityOptions.Count < 3)
+                return;
+
+            SetActiveOption(abilityOptions[2]);
+            TreeController.Instance.SetActiveAbility(abilityOptions[2].ActiveAbility);
+        }
     }
 
     public void SetNewAbility(TreeAbilities newAbility)
@@ -33,5 +76,10 @@ public class AbilityController : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public void SetActiveOption(AbilityOption activeOption)
+    {
+        ActiveAbilityOption = activeOption;
     }
 }

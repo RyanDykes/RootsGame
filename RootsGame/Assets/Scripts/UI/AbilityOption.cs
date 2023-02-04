@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class AbilityOption : MonoBehaviour, IPointerClickHandler
 {
     public TreeAbilities ActiveAbility { get; private set; } = null;
-    public bool IsAbilityActive => (ActiveAbility != null);
+    public bool IsAbilityActive => (ActiveAbility != null) && (AbilityController.Instance.ActiveAbilityOption == this);
 
     [SerializeField] private Image imageUI = null;
 
@@ -22,12 +22,13 @@ public class AbilityOption : MonoBehaviour, IPointerClickHandler
     {
         imageUI.raycastTarget = IsAbilityActive;
 
-        alpha.a = IsAbilityActive ? 1f : 0.5f;
+        alpha.a = IsAbilityActive ? 1f : 0.4f;
         imageUI.color = alpha;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        AbilityController.Instance.SetActiveOption(this);
         TreeController.Instance.SetActiveAbility(ActiveAbility);
     }
 
