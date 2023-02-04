@@ -20,7 +20,7 @@ public class WallRoot : TreeAbilities
         Destroy(gameObject);
     }
 
-    private readonly WaitForSeconds rootDelay = new WaitForSeconds(0.3f);
+    private readonly WaitForSeconds rootDelay = new WaitForSeconds(0.23f);
     private IEnumerator SpawnDelayCoroutine()
     {
         StartCoroutine(SpawnCoroutine(wallRoot1Prefab));
