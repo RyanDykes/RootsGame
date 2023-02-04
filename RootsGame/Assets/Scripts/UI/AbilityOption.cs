@@ -6,11 +6,11 @@ using UnityEngine.EventSystems;
 
 public class AbilityOption : MonoBehaviour, IPointerClickHandler
 {
-    public bool IsAbilityActive => (activeAbility != null);
+    public TreeAbilities ActiveAbility { get; private set; } = null;
+    public bool IsAbilityActive => (ActiveAbility != null);
 
     [SerializeField] private Image imageUI = null;
 
-    private TreeAbilities activeAbility = null;
     private Color alpha;
 
     private void Start()
@@ -28,12 +28,11 @@ public class AbilityOption : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        print("click");
-        TreeController.Instance.SetActiveAbility(activeAbility);
+        TreeController.Instance.SetActiveAbility(ActiveAbility);
     }
 
     public void SetAbilityOption(TreeAbilities newAbility)
     {
-        activeAbility = newAbility;
+        ActiveAbility = newAbility;
     }
 }

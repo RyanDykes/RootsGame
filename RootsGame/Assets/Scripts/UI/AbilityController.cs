@@ -19,6 +19,8 @@ public class AbilityController : MonoBehaviour
                 abilityOptions[i].SetAbilityOption(allAbilities[i]);
             }
         }
+
+        TreeController.Instance.SetActiveAbility(abilityOptions[0].ActiveAbility);
     }
 
     public void SetNewAbility(TreeAbilities newAbility)

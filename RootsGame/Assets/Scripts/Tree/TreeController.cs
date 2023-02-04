@@ -18,28 +18,9 @@ public class TreeController : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
-    {
-        SetActiveAbility(unlockedTreeAbilities[0]);
-    }
-
     private void OnDestroy()
     {
         Instance = null;
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            if (unlockedTreeAbilities.Count > 0)
-                SetActiveAbility(unlockedTreeAbilities[0]);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            if(unlockedTreeAbilities.Count > 1)
-                SetActiveAbility(unlockedTreeAbilities[1]);
-        }
     }
 
     public void SetActiveAbility(TreeAbilities newActiveAbility)

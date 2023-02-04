@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class PointerController : MonoBehaviour
+public class PointerController : MonoBehaviour, IPointerClickHandler
 {
     private Camera mainCam = null;
-    private Ray ray;
     private Plane groundPlane;
-    private int layer_mask;
 
     private void Awake()
     {
         mainCam = Camera.main;
-        layer_mask = LayerMask.GetMask("UI");
     }
 
     private void Start()
@@ -20,19 +18,31 @@ public class PointerController : MonoBehaviour
         groundPlane = new Plane(Vector3.up, Vector3.zero);
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        //-1 = Left mouse click
+        if (eventData.pointerId != -1)
+            return;
+
+        Ray ray = mainCam.ScreenPointToRay(eventData.position);
+        if (TreeController.Instance.IsAbilityActive)
+        {
+            if (groundPlane.Raycast(ray, out float hitPoint))
+                TreeController.Instance.SpawnAbility(ray.GetPoint(hitPoint));
+        }
+    }
+
+    Vector3 previousMousePosition = Vector3.zero;
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            ray = mainCam.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layer_mask))
-                return;
+        if (Input.GetMouseButtonDown(1))
+            previousMousePosition = Input.mousePosition;
 
-            if (TreeController.Instance.IsAbilityActive)
-            {
-                if (groundPlane.Raycast(ray, out float hitPoint))
-                    TreeController.Instance.SpawnAbility(ray.GetPoint(hitPoint));
-            }
+        if (Input.GetMouseButton(1))
+        {
+            float dragAmount = (Input.mousePosition.x - previousMousePosition.x);
+            CameraController.Instance.RotateCamera(dragAmount);
+            previousMousePosition = Input.mousePosition;
         }
     }
 }

@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 2702558}
   - component: {fileID: 2702557}
   - component: {fileID: 2702556}
-  - component: {fileID: 2702559}
   m_Layer: 5
   m_Name: Ability_3
   m_TagString: Untagged
@@ -213,19 +212,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2702554}
   m_CullTransparentMesh: 1
---- !u!65 &2702559
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2702554}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 100, y: 100, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &18308129
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,7 +224,6 @@ GameObject:
   - component: {fileID: 18308133}
   - component: {fileID: 18308132}
   - component: {fileID: 18308131}
-  - component: {fileID: 18308134}
   m_Layer: 5
   m_Name: Ability_2
   m_TagString: Untagged
@@ -316,19 +301,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 18308129}
   m_CullTransparentMesh: 1
---- !u!65 &18308134
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 18308129}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 100, y: 100, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &101094014
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,7 +313,7 @@ GameObject:
   - component: {fileID: 101094018}
   - component: {fileID: 101094017}
   - component: {fileID: 101094016}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -563,7 +535,7 @@ GameObject:
   m_Component:
   - component: {fileID: 368984762}
   - component: {fileID: 368984761}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Enemy (1)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -856,7 +828,7 @@ GameObject:
   - component: {fileID: 612606355}
   - component: {fileID: 612606354}
   - component: {fileID: 612606353}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1017,7 +989,7 @@ GameObject:
   m_Component:
   - component: {fileID: 680763339}
   - component: {fileID: 680763338}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Enemy (4)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1161,7 +1133,7 @@ GameObject:
   - component: {fileID: 763988898}
   - component: {fileID: 763988897}
   - component: {fileID: 763988896}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1256,7 +1228,7 @@ GameObject:
   - component: {fileID: 787154342}
   - component: {fileID: 787154341}
   - component: {fileID: 787154340}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1351,7 +1323,7 @@ GameObject:
   - component: {fileID: 807911155}
   - component: {fileID: 807911154}
   - component: {fileID: 807911153}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1447,7 +1419,7 @@ GameObject:
   - component: {fileID: 849566572}
   - component: {fileID: 849566571}
   - component: {fileID: 849566570}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1565,7 +1537,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
 --- !u!114 &924800977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1642,7 +1614,7 @@ GameObject:
   - component: {fileID: 970729570}
   - component: {fileID: 970729569}
   - component: {fileID: 970729568}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2149,7 +2121,7 @@ GameObject:
   - component: {fileID: 1111164562}
   - component: {fileID: 1111164561}
   - component: {fileID: 1111164560}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2528,7 +2500,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1201553575}
   - component: {fileID: 1201553574}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Enemy (2)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2575,7 +2547,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1237790578}
   - component: {fileID: 1237790577}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Enemy (3)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2808,7 +2780,6 @@ GameObject:
   - component: {fileID: 1341601867}
   - component: {fileID: 1341601866}
   - component: {fileID: 1341601865}
-  - component: {fileID: 1341601868}
   m_Layer: 5
   m_Name: Ability_1
   m_TagString: Untagged
@@ -2886,19 +2857,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1341601863}
   m_CullTransparentMesh: 1
---- !u!65 &1341601868
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1341601863}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 100, y: 100, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1364144794
 GameObject:
   m_ObjectHideFlags: 0
@@ -2911,7 +2869,7 @@ GameObject:
   - component: {fileID: 1364144798}
   - component: {fileID: 1364144797}
   - component: {fileID: 1364144796}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3196,7 +3154,7 @@ GameObject:
   - component: {fileID: 1461607594}
   - component: {fileID: 1461607593}
   - component: {fileID: 1461607592}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3292,7 +3250,7 @@ GameObject:
   - component: {fileID: 1463810621}
   - component: {fileID: 1463810620}
   - component: {fileID: 1463810619}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3557,7 +3515,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EventMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 35
   m_MaxRayIntersections: 0
 --- !u!114 &1486044445
 MonoBehaviour:
@@ -3686,7 +3644,7 @@ GameObject:
   - component: {fileID: 1559944437}
   - component: {fileID: 1559944436}
   - component: {fileID: 1559944435}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4172,6 +4130,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2038307612}
+  - component: {fileID: 2038307613}
   m_Layer: 0
   m_Name: Camera_Pivot
   m_TagString: Untagged
@@ -4196,6 +4155,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2038307613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038307611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4168d2214d04b9641bec5556c9e56b05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraPivot: {fileID: 2038307612}
+  cameraSpeed: 10
 --- !u!1001 &5396579311743938816
 PrefabInstance:
   m_ObjectHideFlags: 0
