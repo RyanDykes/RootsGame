@@ -3,12 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TreeSingleton : MonoBehaviour
+public class PlayerSingleton : MonoBehaviour
 {
-    public static TreeSingleton Instance { get; private set; }
+    public static PlayerSingleton Instance { get; private set; }
 
+    private const int _maxHealth = 10;
 
+    private int _exp;
     private int _health;
+
+    public void RecieveExp(int exp)
+    {
+        Debug.Log("Recieving exp: " + exp + ", current _exp: " + _exp);
+        _exp += exp;
+        Debug.Log("New _exp: " + _exp);
+    }
 
     public void TakeDamage(int damage)
     {
@@ -20,6 +29,7 @@ public class TreeSingleton : MonoBehaviour
         {
             Debug.Log("Tree is dead!");
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SetUp();
         }
     }
 
@@ -33,8 +43,12 @@ public class TreeSingleton : MonoBehaviour
         else
         {
             Instance = this;
-
-            _health = 10;
+            SetUp();
         }
+    }
+
+    private void SetUp()
+    {
+        _health = _maxHealth;
     }
 }
