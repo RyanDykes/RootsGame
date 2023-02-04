@@ -7,25 +7,25 @@ public class PlayerSingleton : MonoBehaviour
 {
     public static PlayerSingleton Instance { get; private set; }
 
-    private const int _maxHealth = 10;
+    public int StartHealth = 100;
+    public int Experience { get; set; }
+    public int Health { get; set; }
 
-    private int _exp;
-    private int _health;
 
     public void RecieveExp(int exp)
     {
-        Debug.Log("Recieving exp: " + exp + ", current _exp: " + _exp);
-        _exp += exp;
-        Debug.Log("New _exp: " + _exp);
+        Debug.Log("Recieving exp: " + exp + ", current Experience: " + Experience);
+        Experience += exp;
+        Debug.Log("New _exp: " + Experience);
     }
 
     public void TakeDamage(int damage)
     {
-        Debug.Log("Dealing damage: " + damage + ", _health: " + _health);
-        _health -= damage;
-        Debug.Log("New health: " + _health);
+        Debug.Log("Dealing damage: " + damage + ", _health: " + Health);
+        Health -= damage;
+        Debug.Log("New health: " + Health);
 
-        if (_health < 1)
+        if (Health < 1)
         {
             Debug.Log("Tree is dead!");
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -49,6 +49,7 @@ public class PlayerSingleton : MonoBehaviour
 
     private void SetUp()
     {
-        _health = _maxHealth;
+        Health = StartHealth;
+        Experience = 0;
     }
 }
