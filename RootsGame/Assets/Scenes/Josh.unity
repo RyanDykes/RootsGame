@@ -922,6 +922,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraPivot: {fileID: 884974116}
+  cameraRef: {fileID: 0}
+  cameraSurfaceTreeRef: {fileID: 0}
+  cameraSkillTreeRef: {fileID: 0}
+  transitionCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   cameraSpeed: 10
 --- !u!4 &884974116
 Transform:
