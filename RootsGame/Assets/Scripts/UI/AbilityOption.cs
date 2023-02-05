@@ -28,6 +28,9 @@ public class AbilityOption : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (ActiveAbility == null)
+            return;
+
         AbilityController.Instance.SetActiveOption(this);
         TreeController.Instance.SetActiveAbility(ActiveAbility);
     }
@@ -35,5 +38,6 @@ public class AbilityOption : MonoBehaviour, IPointerClickHandler
     public void SetAbilityOption(TreeAbilities newAbility)
     {
         ActiveAbility = newAbility;
+        imageUI.sprite = newAbility.TreeAbilitySprite;
     }
 }

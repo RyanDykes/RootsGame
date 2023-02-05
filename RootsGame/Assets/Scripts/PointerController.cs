@@ -23,7 +23,7 @@ public class PointerController : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         //-1 = Left mouse click
-        if (eventData.pointerId != -1)
+        if (eventData.pointerId != -1 || TreeController.Instance.RootCount >= TreeController.Instance.RootAmount)
             return;
 
         Ray ray = mainCam.ScreenPointToRay(eventData.position);
