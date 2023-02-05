@@ -487,6 +487,7 @@ MonoBehaviour:
   - {fileID: 293940010}
   - {fileID: 674761335}
   - {fileID: 1529524949}
+  rootsUIPrefab: {fileID: 0}
   allAbilities:
   - {fileID: 479250684720808507, guid: 74e98bda272990d42bc8693d454afcc5, type: 3}
   - {fileID: 6988119418132595466, guid: dfe589e2fd4eb294bb7b46904743cc86, type: 3}
