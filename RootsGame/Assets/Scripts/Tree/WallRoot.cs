@@ -10,6 +10,8 @@ public class WallRoot : TreeAbilities
 
     public override void Spawn(Vector3 spawnPosition)
     {
+        base.Spawn(spawnPosition);
+
         transform.position = spawnPosition;
         transform.rotation = Quaternion.LookRotation(TreeController.Instance.transform.position - transform.position);
         StartCoroutine(SpawnDelayCoroutine());

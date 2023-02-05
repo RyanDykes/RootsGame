@@ -35,5 +35,6 @@ public class AbilityOption : MonoBehaviour, IPointerClickHandler
     public void SetAbilityOption(TreeAbilities newAbility)
     {
         ActiveAbility = newAbility;
+        imageUI.sprite = newAbility.TreeAbilitySprite;
     }
 }

@@ -1,14 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TreeController : MonoBehaviour
 {
     public static TreeController Instance = null;
 
+    public List<TreeAbilities> UnlockedTreeAbilities => unlockedTreeAbilities;
+
+    public int RootCount = 0;
+    public int RootAmount = 5;
+
+    private float cooldownTime = 2;
+    [SerializeField] private float maxCooldownTime = 2;
+
     public bool IsAbilityActive => (ActiveAbility != null);
     public TreeAbilities ActiveAbility { get; private set; } = null;
 
+    [SerializeField] private List<Image> rootsUI = null;
     [SerializeField] private List<TreeAbilities> unlockedTreeAbilities = null;
 
     private List<TreeAbilities> activeTreeAbilities = new List<TreeAbilities>();
@@ -17,6 +27,18 @@ public class TreeController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        rootsUI.ForEach(r => r.gameObject.SetActive(false));
+        for(int i = 0; i < RootAmount; i++)
+        {
+            rootsUI[i].gameObject.SetActive(true);
+        }
+
+        AbilityController.Instance.SetActiveOption(AbilityController.Instance.AbilityOptions[0]);
+        SetActiveAbility(unlockedTreeAbilities[0]);
     }
 
     private void OnDestroy()
@@ -31,6 +53,10 @@ public class TreeController : MonoBehaviour
 
     public void UnlockNewAbility(TreeAbilities newUnlock)
     {
+        if (unlockedTreeAbilities.Contains(newUnlock))
+            return;
+
+        AbilityController.Instance.SetNewAbility(newUnlock);
         unlockedTreeAbilities.Add(newUnlock);
     }
 
@@ -39,5 +65,40 @@ public class TreeController : MonoBehaviour
         TreeAbilities spawnedAbility = Instantiate(ActiveAbility, spawnPosition, Quaternion.identity);
         activeTreeAbilities.Add(spawnedAbility);
         spawnedAbility.Spawn(spawnPosition);
+    }
+
+    public void IncreaseRootAmount(int increaseAmount)
+    {
+        RootAmount += increaseAmount;
+    }
+
+    public void LowerRootCooldown(float decreaseAmount)
+    {
+        cooldownTime -= decreaseAmount;
+        cooldownTime = Mathf.Clamp(cooldownTime, 0f, maxCooldownTime);
+    }
+
+    public void SpawnRoot()
+    {
+        RootCount++;
+        RootCount = Mathf.Clamp(RootCount, 0, RootAmount);
+        SetAlpha(rootsUI[RootAmount - RootCount], 0.5f);
+        StartCoroutine(RootCooldownCoroutine());
+    }
+
+    private IEnumerator RootCooldownCoroutine()
+    {
+        yield return new WaitForSeconds(cooldownTime);
+
+        RootCount--;
+        RootCount = Mathf.Clamp(RootCount, 0, RootAmount);
+        SetAlpha(rootsUI[(RootAmount - RootCount) - 1], 1f);
+    }
+
+    private void SetAlpha(Image rootImage, float value)
+    {
+        Color alpha = rootImage.color;
+        alpha.a = value;
+        rootImage.color = alpha;
     }
 }

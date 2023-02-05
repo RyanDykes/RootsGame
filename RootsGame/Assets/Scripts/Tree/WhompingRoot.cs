@@ -28,6 +28,8 @@ public class WhompingRoot : TreeAbilities
 
     public override void Spawn(Vector3 spawnPosition)
     {
+        base.Spawn(spawnPosition);
+
         if (spawnCoroutine != null) StopCoroutine(spawnCoroutine);
         spawnCoroutine = StartCoroutine(SpawnCoroutine(spawnPosition));
     }
