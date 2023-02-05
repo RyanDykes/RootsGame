@@ -3,6 +3,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
+    public Animator animator;
     public const string treeName = "Tree";
     private const int _stopDistance = 5;
     private const float _attackCoolDown = 3.0f;
@@ -49,10 +50,12 @@ public class Enemy : MonoBehaviour
 
         if (distanceToTarget > stopDistance)
         {
+            animator.SetBool("Attack", false);
             MoveTowardsTarget();
         }
         else
         {
+            animator.SetBool("Attack", true);
             if (targetObject.name == treeName)
             {
                 AttackTree();
@@ -163,8 +166,4 @@ public class Enemy : MonoBehaviour
         PlayerSingleton.Instance.RecieveExp(ExpReward);
     }
 
-    public void Die(float time)
-    {
-        Destroy(gameObject, time);
-    }
 }
