@@ -22,14 +22,16 @@ public class PlayerSingleton : MonoBehaviour
 
     public void RecieveExp(int exp)
     {
+        if (_inGameOver || GamePaused) return;
+
         Experience += exp;
         ExperienceUI.text = "Exp: " + Experience;
     }
 
     public void TakeDamage(int damage)
     {
-        if (_inGameOver) return;
-        
+        if (_inGameOver || GamePaused) return;
+
         Health -= damage;
         HealthUI.text = "Health: " + Health;
 
@@ -55,6 +57,7 @@ public class PlayerSingleton : MonoBehaviour
     private void SetUp()
     {
         _inGameOver = false;
+        GamePaused = false;
         GameOverUI.enabled = false;
         Health = StartHealth;
         Experience = 0;
