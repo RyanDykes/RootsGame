@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class Flower : MonoBehaviour, IPointerClickHandler
 {
+    [SerializeField] private int health = 3;
     [SerializeField] private float growingTime = 5f;
     [SerializeField] private Collider clickCollider = null;
     [SerializeField] private Transform experienceOrb = null;
@@ -22,6 +23,15 @@ public class Flower : MonoBehaviour, IPointerClickHandler
     private void Update()
     {
         clickCollider.enabled = isReady;
+    }
+
+    public void TakeDamage()
+    {
+        health--;
+        if (health < 1)
+        {
+            DestroyFlower();
+        }
     }
 
     public void DestroyFlower()

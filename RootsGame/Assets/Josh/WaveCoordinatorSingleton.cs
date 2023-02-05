@@ -76,6 +76,7 @@ public class WaveCoordinatorSingleton : MonoBehaviour
         }
 
         var availableEnemies = new List<GameObject> { Woodcutter };
+        /*
         if (_wave > 0)
         {
             availableEnemies.Add(Chainsaw);
@@ -88,6 +89,7 @@ public class WaveCoordinatorSingleton : MonoBehaviour
         {
             availableEnemies.Add(Poison);
         }
+        */
 
         return availableEnemies[Random.Range(0, (availableEnemies.Count - 1))];
     }

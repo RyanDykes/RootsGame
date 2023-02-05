@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Flower
+  - Wall
   layers:
   - Default
   - TransparentFX
