@@ -134,7 +134,7 @@ public class WhompingRoot : TreeAbilities
 
     private IEnumerator SetEnemyPositionCoroutine(Transform target)
     {
-        while (true)
+        while (activeEnemy != null)
         {
             activeEnemy.transform.SetPositionAndRotation(target.position, target.rotation);
             yield return null;
