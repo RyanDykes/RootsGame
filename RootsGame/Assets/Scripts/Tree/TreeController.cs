@@ -19,7 +19,7 @@ public class TreeController : MonoBehaviour
     public TreeAbilities ActiveAbility { get; private set; } = null;
 
     [SerializeField] private List<Image> rootsUI = null;
-    [SerializeField] private List<TreeAbilities> unlockedTreeAbilities = null;
+    private List<TreeAbilities> unlockedTreeAbilities = new List<TreeAbilities>();
     [SerializeField] private List<TreeAbilities> allAbilities = null;
 
     private List<TreeAbilities> activeTreeAbilities = new List<TreeAbilities>();
