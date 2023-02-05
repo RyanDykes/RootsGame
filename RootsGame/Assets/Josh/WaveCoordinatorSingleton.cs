@@ -79,17 +79,15 @@ public class WaveCoordinatorSingleton : MonoBehaviour
         if (_wave > 1)
         {
             availableEnemies.Add(Chainsaw);
+        }       
+        if (_wave > 2)
+        {
+            availableEnemies.Add(Flamethrower);
         }
-        /*
-       if (_wave > 1)
-       {
-           availableEnemies.Add(Flamethrower);
-       }
-       if (_wave > 2)
-       {
-           availableEnemies.Add(Poison);
-       }
-       */
+        if (_wave > 3)
+        {
+            availableEnemies.Add(Poison);
+        }
 
         return availableEnemies[Random.Range(0, (availableEnemies.Count))];
     }
