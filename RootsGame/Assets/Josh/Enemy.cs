@@ -9,7 +9,8 @@ public class Enemy : MonoBehaviour
     private const float _attackCoolDown = 3.0f;
 
     private GameObject targetObject;
-    
+    public GameObject particle;
+
     private float _lastAttackAt = 0.0f;
     public bool IsDead { get; set; } = false;
     public bool IsGrabbed { get; set; } = false;
@@ -52,11 +53,19 @@ public class Enemy : MonoBehaviour
         if (distanceToTarget > stopDistance)
         {
             animator.SetBool("Attack", false);
+            if (particle != null && particle.active)
+            {
+                particle.SetActive(false);
+            }
             MoveTowardsTarget();
         }
         else
         {
             animator.SetBool("Attack", true);
+            if (particle != null && !particle.active)
+            {
+                particle.SetActive(true);
+            }
             if (targetObject.name == treeName)
             {
                 AttackTree();

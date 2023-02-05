@@ -20,7 +20,7 @@ public class WaveCoordinatorSingleton : MonoBehaviour
     public GameObject Poison;
 
     public int EnemiesPerWave { get; set; } = 10;
-    public int SecondsBetweenWave { get; set; } = 3;
+    public int SecondsBetweenWave { get; set; } = 5;
 
     private int _countDown = 0;
     private int _wave = 0;
