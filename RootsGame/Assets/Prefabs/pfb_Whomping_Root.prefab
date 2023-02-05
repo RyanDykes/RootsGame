@@ -238,7 +238,6 @@ Transform:
   - {fileID: 7344880509688133694}
   - {fileID: 7344880511162171822}
   - {fileID: 7344880509573355717}
-  - {fileID: 7344880510418120057}
   m_Father: {fileID: 6988119418132595468}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -268,7 +267,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -2.10218, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 7344880510418120057}
   m_Father: {fileID: 8673420451421813227}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -509,7 +509,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   treeAbilitySprite: {fileID: 21300000, guid: 9e6567e343db157419a9d3d0a319ffac, type: 3}
-  animator: {fileID: 6988119418132595465}
+  animator: {fileID: 3733491363907858131}
   grabRadius: 3
   grabCollider: {fileID: 6988119418132595464}
   grabIndicator: {fileID: 7344880509159282787}
@@ -843,12 +843,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7344880510418120058}
-  m_LocalRotation: {x: -0.47466934, y: 0.11237884, z: -0.080013335, w: 0.86928594}
-  m_LocalPosition: {x: -0.099870525, y: 3.43, z: -0.16033706}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.4746694, y: 0.11237925, z: -0.08001312, w: 0.8692858}
+  m_LocalPosition: {x: -0.28, y: -2.63, z: -0.23}
+  m_LocalScale: {x: 1.0224038, y: 1.1166053, z: 1.3095322}
   m_Children: []
-  m_Father: {fileID: 5898709373786491468}
-  m_RootOrder: 5
+  m_Father: {fileID: 5027657174642711214}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -53.829, y: 27.371, z: -24.612}
 --- !u!1 &7344880511162171823
 GameObject:
