@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WallRoot : TreeAbilities
 {
+    [SerializeField] private int health = 3;
     [SerializeField] private Transform wallRoot1Prefab = null;
     [SerializeField] private Transform wallRoot2Prefab = null;
     [SerializeField] private Transform wallRoot3Prefab = null;
@@ -13,6 +14,15 @@ public class WallRoot : TreeAbilities
         transform.position = spawnPosition;
         transform.rotation = Quaternion.LookRotation(TreeController.Instance.transform.position - transform.position);
         StartCoroutine(SpawnDelayCoroutine());
+    }
+
+    public void TakeDamage()
+    {
+        health--;
+        if (health < 1)
+        {
+            DestroyWallRoot();
+        }
     }
 
     public void DestroyWallRoot()

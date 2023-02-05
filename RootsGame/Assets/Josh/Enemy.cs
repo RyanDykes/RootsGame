@@ -3,18 +3,13 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-    public const string targetName = "Tree";
-    private const int _stopDistance = 3;
+    public const string treeName = "Tree";
+    private const int _stopDistance = 5;
     private const float _attackCoolDown = 3.0f;
 
     private GameObject targetObject;
-    private Vector3 target;
-        
-    private bool isCurrentlyColliding = false;
-
+    
     private float _lastAttackAt = 0.0f;
-    private GameObject _flower;
-
     public bool IsDead { get; set; } = false;
 
     public int Health = 1;
@@ -35,32 +30,41 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        targetObject = GameObject.Find(targetName);
-        if (targetObject != null)
-        {
-            target = targetObject.transform.position;
-        }
-        else
-        {
-            Debug.Log("Object not found: " + targetName);
-        }
+        AssignTarget(GameObject.Find(treeName));
     }
 
     void Update()
     {
-        if (target == null || IsDead || PlayerSingleton.Instance.GamePaused || isCurrentlyColliding)
+        if (IsDead || PlayerSingleton.Instance.GamePaused)
         {
             return;
+        } 
+        else if (targetObject == null)
+        {
+            AssignTarget(GameObject.Find(treeName));
         }
 
-        var distanceToTree = Vector3.Distance(transform.position, target);
-        if (distanceToTree > _stopDistance)
+        var distanceToTarget = Vector3.Distance(transform.position, targetObject.transform.position);
+        var stopDistance = targetObject.name == treeName ? _stopDistance : 1.5;
+
+        if (distanceToTarget > stopDistance)
         {
-            MoveTowardsTree();
+            MoveTowardsTarget();
         }
         else
         {
-            AttackTree();
+            if (targetObject.name == treeName)
+            {
+                AttackTree();
+            } 
+            else if (targetObject.CompareTag("Flower"))
+            {
+                AttackFlower();
+            } 
+            else if (targetObject.CompareTag("Wall"))
+            {
+                AttackWall();
+            }
         }
     }
 
@@ -69,24 +73,27 @@ public class Enemy : MonoBehaviour
 
         if (other.CompareTag("Flower"))
         {
-            isCurrentlyColliding = true;
-            _flower = other.gameObject;
-            Invoke(nameof(AttackFlower), 3.0f);
+            AssignTarget(other.gameObject);
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    public void HaveHitWall(GameObject wall)
     {
-        isCurrentlyColliding = false;
+        AssignTarget(wall);
     }
 
-    public void MoveTowardsTree()
+    public void AssignTarget(GameObject newTarget)
+    {
+        targetObject = newTarget;
+    }
+
+    public void MoveTowardsTarget()
     {
         var movementSpeed = Random.Range(MinMovementSpeed, MaxMovementSpeed);
-        var randomizedTarget = target;
+        var randomizedTarget = targetObject.transform.position;
         if (timer <= 0)
         {
-            Vector3 randomOffset = new Vector3(Random.Range(-offsetAmount, offsetAmount), target.y, Random.Range(-offsetAmount, offsetAmount));
+            Vector3 randomOffset = new Vector3(Random.Range(-offsetAmount, offsetAmount), targetObject.transform.position.y, Random.Range(-offsetAmount, offsetAmount));
             randomizedTarget += randomOffset;
             timer = changeInterval;
         }
@@ -94,7 +101,7 @@ public class Enemy : MonoBehaviour
         {
             timer -= Time.deltaTime;
         }
-
+        transform.LookAt(targetObject.transform.position);
         transform.position = Vector3.MoveTowards(transform.position, randomizedTarget, movementSpeed * Time.deltaTime);
     }
 
@@ -110,18 +117,45 @@ public class Enemy : MonoBehaviour
 
     private void AttackFlower()
     {
-        DealDamageToFlower();
+        var delta = Time.time - _lastAttackAt;
+        if (delta >= _attackCoolDown)
+        {
+            _lastAttackAt = Time.time;
+            DealDamageToFlower();
+        }
     }
 
-    public void DealDamageToFlower()
+    private void AttackWall()
     {
-        Destroy(_flower);
-        isCurrentlyColliding = false;
+        var delta = Time.time - _lastAttackAt;
+        if (delta >= _attackCoolDown)
+        {
+            _lastAttackAt = Time.time;
+            DealDamageToWall();
+        }
     }
 
     public void DealDamageToTree()
     {
+        if (targetObject.name != treeName) return;
+
         PlayerSingleton.Instance.TakeDamage(AttackPower);
+    }
+
+    public void DealDamageToFlower()
+    {
+        if (!targetObject.CompareTag("Flower")) return;
+
+        Flower flower = targetObject.GetComponent<Flower>();
+        flower.TakeDamage();
+    }
+
+    public void DealDamageToWall()
+    {
+        if (!targetObject.CompareTag("Wall")) return;
+
+        WallRoot wall = targetObject.GetComponent<WallRoot>();
+        wall.TakeDamage();
     }
 
     public void GiveExperience()
