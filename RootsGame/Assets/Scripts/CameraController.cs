@@ -43,6 +43,7 @@ public class CameraController : MonoBehaviour
     public void TransitionToSurfaceTree()
     {
         inSkillTreeView = false;
+        PlayerSingleton.Instance.GamePaused = false;
         if (transitionCoroutine != null) StopCoroutine(transitionCoroutine);
         transitionCoroutine = StartCoroutine(TransitionCoroutine(cameraSurfaceTreeRef));
     }
@@ -50,6 +51,7 @@ public class CameraController : MonoBehaviour
     public void TransitionToSkillTree()
     {
         inSkillTreeView = true;
+        PlayerSingleton.Instance.GamePaused = true;
         if (transitionCoroutine != null) StopCoroutine(transitionCoroutine);
         transitionCoroutine = StartCoroutine(TransitionCoroutine(cameraSkillTreeRef));
     }
