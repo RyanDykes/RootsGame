@@ -79,7 +79,8 @@ public class TreeController : MonoBehaviour
     public void IncreaseRootAmount(int increaseAmount)
     {
         RootAmount += increaseAmount;
-        for(int i = 0; i < RootAmount; i++)
+        RootAmount = (int)Mathf.Clamp(RootAmount, 0f, rootsUI.Count  -1);
+        for (int i = 0; i < RootAmount; i++)
         {
             rootsUI[i].gameObject.SetActive(true);
             SetAlpha(rootsUI[i], 1f);

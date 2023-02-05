@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 
 public class UnlockableSkill : MonoBehaviour, IPointerClickHandler
 {
+    public System.Action OnClick = null;
     [SerializeField] private int requiredEXP = 250;
 
     [SerializeField] private bool increaseAmount = false;
@@ -39,6 +40,8 @@ public class UnlockableSkill : MonoBehaviour, IPointerClickHandler
             Color alpha = abilityIcon.color;
             alpha.a = 1f;
             abilityIcon.color = alpha;
+
+            OnClick?.Invoke();
 
             if (ability != null)
             {
