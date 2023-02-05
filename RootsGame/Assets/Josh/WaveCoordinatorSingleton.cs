@@ -76,22 +76,22 @@ public class WaveCoordinatorSingleton : MonoBehaviour
         }
 
         var availableEnemies = new List<GameObject> { Woodcutter };
-        /*
-        if (_wave > 0)
+        if (_wave > 1)
         {
             availableEnemies.Add(Chainsaw);
         }
-        if (_wave > 1)
-        {
-            availableEnemies.Add(Flamethrower);
-        }
-        if (_wave > 2)
-        {
-            availableEnemies.Add(Poison);
-        }
-        */
+        /*
+       if (_wave > 1)
+       {
+           availableEnemies.Add(Flamethrower);
+       }
+       if (_wave > 2)
+       {
+           availableEnemies.Add(Poison);
+       }
+       */
 
-        return availableEnemies[Random.Range(0, (availableEnemies.Count - 1))];
+        return availableEnemies[Random.Range(0, (availableEnemies.Count))];
     }
 
     private void StartWave()
