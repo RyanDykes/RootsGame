@@ -8,8 +8,8 @@ public class AbilityController : MonoBehaviour
 
     public AbilityOption ActiveAbilityOption { get; private set; } = null;
 
+    public List<AbilityOption> AbilityOptions => abilityOptions;
     [SerializeField] private List<AbilityOption> abilityOptions = null;
-    [SerializeField] private List<TreeAbilities> allAbilities = null;
 
     private void Awake()
     {
@@ -19,23 +19,6 @@ public class AbilityController : MonoBehaviour
     private void OnDestroy()
     {
         Instance = null;
-    }
-
-    private void Start()
-    {
-        for (int i = 0; i < abilityOptions.Count; i++)
-        {
-            if (i >= allAbilities.Count)
-                break;
-
-            if (!abilityOptions[i].IsAbilityActive)
-            {
-                abilityOptions[i].SetAbilityOption(allAbilities[i]);
-            }
-        }
-
-        SetActiveOption(abilityOptions[0]);
-        TreeController.Instance.SetActiveAbility(abilityOptions[0].ActiveAbility);
     }
 
     private void Update()
@@ -73,6 +56,7 @@ public class AbilityController : MonoBehaviour
             if (!abilityOptions[i].IsAbilityActive)
             {
                 abilityOptions[i].SetAbilityOption(newAbility);
+                TreeController.Instance.UnlockNewAbility(newAbility);
                 break;
             }
         }

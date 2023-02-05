@@ -13,6 +13,8 @@ public class Tree_Spike : TreeAbilities
 
     public override void Spawn(Vector3 spawnPosition)
     {
+        base.Spawn(spawnPosition);
+
         if (spawnCoroutine != null) StopCoroutine(spawnCoroutine);
         spawnCoroutine = StartCoroutine(SpawnCoroutine(spawnPosition));
     }
