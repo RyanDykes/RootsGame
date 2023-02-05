@@ -22,7 +22,7 @@ public class PlayerSingleton : MonoBehaviour
 
     public void RecieveExp(int exp)
     {
-        if (_inGameOver || GamePaused) return;
+        if (_inGameOver) return;
 
         Experience += exp;
         ExperienceUI.text = "Exp: " + Experience;
