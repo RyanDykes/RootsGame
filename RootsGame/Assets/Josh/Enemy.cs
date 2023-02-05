@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     
     private float _lastAttackAt = 0.0f;
     public bool IsDead { get; set; } = false;
+    public bool IsGrabbed { get; set; } = false;
 
     public int Health = 1;
     public int AttackPower = 1;
