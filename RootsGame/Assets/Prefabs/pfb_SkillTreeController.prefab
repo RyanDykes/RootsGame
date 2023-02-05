@@ -100,7 +100,7 @@ MonoBehaviour:
   increaseAmount: 0
   rootIncreaseAmount: 0
   lowerCooldown: 1
-  reduceRootCooldownAmount: 0.5
+  reduceRootCooldownAmount: 0.25
   abilityIcon: {fileID: 4076809060041570047}
   ability: {fileID: 0}
 --- !u!65 &1707253616274850486
@@ -332,7 +332,7 @@ MonoBehaviour:
   increaseAmount: 0
   rootIncreaseAmount: 0
   lowerCooldown: 1
-  reduceRootCooldownAmount: 0.5
+  reduceRootCooldownAmount: 0.25
   abilityIcon: {fileID: 4076809060240746128}
   ability: {fileID: 0}
 --- !u!65 &1961922824989405168
@@ -564,7 +564,7 @@ MonoBehaviour:
   increaseAmount: 0
   rootIncreaseAmount: 0
   lowerCooldown: 1
-  reduceRootCooldownAmount: 0.5
+  reduceRootCooldownAmount: 0.25
   abilityIcon: {fileID: 4076809060360397218}
   ability: {fileID: 0}
 --- !u!65 &43381851672609965
@@ -680,7 +680,7 @@ MonoBehaviour:
   increaseAmount: 0
   rootIncreaseAmount: 0
   lowerCooldown: 1
-  reduceRootCooldownAmount: 0.5
+  reduceRootCooldownAmount: 0.25
   abilityIcon: {fileID: 4076809060401943119}
   ability: {fileID: 0}
 --- !u!65 &5345458969851894941

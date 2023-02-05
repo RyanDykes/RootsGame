@@ -1265,7 +1265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RootCount: 0
   RootAmount: 5
-  maxCooldownTime: 3.5
+  maxCooldownTime: 2.5
   rootsUI:
   - {fileID: 1238452001}
   - {fileID: 62113797}
