@@ -53,7 +53,7 @@ public class AbilityController : MonoBehaviour
     {
         for(int i = 0; i < abilityOptions.Count; i++)
         {
-            if (!abilityOptions[i].IsAbilityActive)
+            if (abilityOptions[i].ActiveAbility == null)
             {
                 abilityOptions[i].SetAbilityOption(newAbility);
                 TreeController.Instance.UnlockNewAbility(newAbility);

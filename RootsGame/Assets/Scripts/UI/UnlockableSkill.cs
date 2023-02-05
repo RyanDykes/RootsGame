@@ -21,6 +21,8 @@ public class UnlockableSkill : MonoBehaviour, IPointerClickHandler
 
     private void Start()
     {
+        isActive = true;
+
         Color alpha = abilityIcon.color;
         alpha.a = 0.4f;
         abilityIcon.color = alpha;
