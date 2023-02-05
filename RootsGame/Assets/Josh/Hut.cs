@@ -17,7 +17,7 @@ public class Hut : MonoBehaviour
         {
             if (!PlayerSingleton.Instance.GamePaused)
             {
-                Instantiate(enemy, transform.position, transform.rotation);
+                Instantiate(enemy, new Vector3(transform.position.x, 0, transform.position.z), transform.rotation);
             }
             Invoke(nameof(InstantiateObject), Random.Range(MinSpawnDelay, MaxSpawnDelay));
         } 
