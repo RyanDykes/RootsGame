@@ -168,7 +168,7 @@ public class Enemy : MonoBehaviour
         if (!targetObject.CompareTag("Wall")) return;
 
         WallRoot wall = targetObject.GetComponent<WallRoot>();
-        wall.TakeDamage();
+        wall.TakeDamage(AttackPower);
     }
 
     public void GiveExperience()

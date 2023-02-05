@@ -18,7 +18,7 @@ public class WallRoot : TreeAbilities
         StartCoroutine(SpawnDelayCoroutine());
     }
 
-    public void TakeDamage()
+    public void TakeDamage(int attackPower)
     {
         health--;
         if (health < 1)
