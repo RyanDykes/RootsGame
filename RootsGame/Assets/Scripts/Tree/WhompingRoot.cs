@@ -14,6 +14,7 @@ public class WhompingRoot : TreeAbilities
     private Coroutine whompCoroutine = null;
     private Coroutine enemyCoroutine = null;
     private Coroutine throwCoroutine = null;
+    private Coroutine destroyCoroutine = null;
 
     private Enemy activeEnemy = null;
     private Enemy previousEnemy = null;
@@ -168,7 +169,32 @@ public class WhompingRoot : TreeAbilities
 
         previousEnemy = activeEnemy;
         activeEnemy = null;
-        IsActive = true;
+
+        if (destroyCoroutine != null) StopCoroutine(destroyCoroutine);
+        destroyCoroutine = StartCoroutine(DestroyCoroutine());
+    }
+
+    readonly WaitForSeconds destroyDelay = new WaitForSeconds(1f);
+    private IEnumerator DestroyCoroutine()
+    {
+        yield return destroyDelay;
+
+        float time = 0f;
+        float duration = 0.2f;
+        Vector3 startPosition = transform.position;
+        Vector3 targetPosition = transform.position + (spawnOffset);
+
+        while (time < duration)
+        {
+            float T = time / duration;
+            transform.position = Vector3.Lerp(startPosition, targetPosition, T);
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        Destroy(gameObject);
+        //RD_NOTE: SPAWN SKULL AND REMOVE ENEMY
     }
 
 #if UNITY_EDITOR
