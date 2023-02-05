@@ -15,8 +15,8 @@ public class WhompingRoot : TreeAbilities
     private Coroutine enemyCoroutine = null;
     private Coroutine throwCoroutine = null;
 
-    private Transform activeEnemy = null;
-    private Transform previousEnemy = null;
+    private Enemy activeEnemy = null;
+    private Enemy previousEnemy = null;
 
     private const float whompDelayAmount = 1f;
 
@@ -36,6 +36,9 @@ public class WhompingRoot : TreeAbilities
 
     public void GrabEnemy()
     {
+        if(activeEnemy != null)
+            activeEnemy.IsGrabbed = true;
+
         if (followCoroutine != null) StopCoroutine(followCoroutine);
         if (enemyCoroutine != null) StopCoroutine(enemyCoroutine);
         enemyCoroutine = StartCoroutine(SetEnemyPositionCoroutine(grabTransform));
@@ -74,9 +77,9 @@ public class WhompingRoot : TreeAbilities
         if (!IsActive || other.transform == previousEnemy || activeEnemy != null)
             return;
 
-        if (other.CompareTag("Enemy") && activeEnemy == null)
+        if (other.CompareTag("Enemy") && activeEnemy == null && other.TryGetComponent(out Enemy enemy))
         {
-            activeEnemy = other.transform;
+            activeEnemy = enemy;
             if (followCoroutine != null) StopCoroutine(followCoroutine);
             followCoroutine = StartCoroutine(FollowCoroutine());
 
@@ -90,7 +93,7 @@ public class WhompingRoot : TreeAbilities
         if (!IsActive || activeEnemy == null)
             return;
 
-        if (other.CompareTag("Enemy") && other.transform == activeEnemy)
+        if (other.CompareTag("Enemy") && other.transform == activeEnemy.transform)
         {
             if (followCoroutine != null) StopCoroutine(followCoroutine);
 
@@ -107,7 +110,7 @@ public class WhompingRoot : TreeAbilities
         while(time < duration)
         {
             float T = time / duration;
-            Vector3 enemyPosition = activeEnemy.position;
+            Vector3 enemyPosition = activeEnemy.transform.position;
             enemyPosition.y = 0f;
             Quaternion targetRotation = Quaternion.LookRotation(enemyPosition - transform.position);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, T);
@@ -144,17 +147,20 @@ public class WhompingRoot : TreeAbilities
         float duration = 0.8f;
         float heightMultiplier = Random.Range(4f, 6f);
 
-        Vector3 startPosition = activeEnemy.position;
+        Vector3 startPosition = activeEnemy.transform.position;
         Vector3 targetPosition = transform.position + (transform.forward * -25f);
 
         while (time < duration)
         {
             float T = time / duration;
-            activeEnemy.position = Vector3.Lerp(startPosition, targetPosition, T) + (Mathf.Sin(Mathf.PI * T) * heightMultiplier * Vector3.up);
+            activeEnemy.transform.position = Vector3.Lerp(startPosition, targetPosition, T) + (Mathf.Sin(Mathf.PI * T) * heightMultiplier * Vector3.up);
 
             time += Time.deltaTime;
             yield return null;
         }
+
+        if (activeEnemy != null)
+            activeEnemy.IsGrabbed = false;
 
         previousEnemy = activeEnemy;
         activeEnemy = null;

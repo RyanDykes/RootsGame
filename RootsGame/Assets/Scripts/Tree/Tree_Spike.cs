@@ -89,7 +89,7 @@ public class Tree_Spike : TreeAbilities
         {
             Enemy enemy = other.transform.GetComponent<Enemy>();
 
-            if (enemy.IsDead)
+            if (enemy.IsDead || enemy.IsGrabbed)
                 return;
 
             impaledEnemies.Add(enemy);

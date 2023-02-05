@@ -11,13 +11,14 @@ GameObject:
   - component: {fileID: 1398419511703557511}
   - component: {fileID: 6840800272408980094}
   - component: {fileID: 3733491363907858131}
+  - component: {fileID: 6463193357938734992}
   m_Layer: 0
   m_Name: mdl_WhompRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1398419511703557511
 Transform:
   m_ObjectHideFlags: 0
@@ -111,6 +112,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &6463193357938734992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739514873301208893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46a5ed9f563193e478f526052e9f07cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whompingRoot: {fileID: 6988119418132595466}
 --- !u!1 &2855427385987969139
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5898709373786491468
 Transform:
   m_ObjectHideFlags: 0
