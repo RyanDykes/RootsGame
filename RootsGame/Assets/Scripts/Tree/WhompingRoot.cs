@@ -47,6 +47,10 @@ public class WhompingRoot : TreeAbilities
     public void ThrowEnemy()
     {
         if (enemyCoroutine != null) StopCoroutine(enemyCoroutine);
+
+        if (activeEnemy == null)
+            return;
+
         if (throwCoroutine != null) StopCoroutine(throwCoroutine);
         throwCoroutine = StartCoroutine(ThrowEnemyCoroutine());
     }
