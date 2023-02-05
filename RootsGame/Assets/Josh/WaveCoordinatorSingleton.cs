@@ -123,6 +123,7 @@ public class WaveCoordinatorSingleton : MonoBehaviour
                 NextWaveIn.enabled = false;
             }
             Invoke(nameof(CountDown), 1);
+            return;
         } 
         else if (!NextWaveIn.enabled)
         {
