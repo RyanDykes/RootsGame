@@ -12,13 +12,14 @@ public class TreeController : MonoBehaviour
     public int RootCount = 0;
     public int RootAmount = 5;
 
-    private float cooldownTime = 2;
+    private float cooldownTime = 0;
     [SerializeField] private float maxCooldownTime = 2;
 
     public bool IsAbilityActive => (ActiveAbility != null);
     public TreeAbilities ActiveAbility { get; private set; } = null;
 
     [SerializeField] private List<Image> rootsUI = null;
+    [SerializeField] private Image rootsUIPrefab = null;
     private List<TreeAbilities> unlockedTreeAbilities = new List<TreeAbilities>();
     [SerializeField] private List<TreeAbilities> allAbilities = null;
 
@@ -32,6 +33,7 @@ public class TreeController : MonoBehaviour
 
     private void Start()
     {
+        cooldownTime = maxCooldownTime;
         rootsUI.ForEach(r => r.gameObject.SetActive(false));
         for(int i = 0; i < RootAmount; i++)
         {
@@ -46,6 +48,12 @@ public class TreeController : MonoBehaviour
     private void OnDestroy()
     {
         Instance = null;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+            PlayerSingleton.Instance.RecieveExp(500);
     }
 
     public void SetActiveAbility(TreeAbilities newActiveAbility)
@@ -71,6 +79,16 @@ public class TreeController : MonoBehaviour
     public void IncreaseRootAmount(int increaseAmount)
     {
         RootAmount += increaseAmount;
+        for(int i = 0; i < RootAmount; i++)
+        {
+            rootsUI[i].gameObject.SetActive(true);
+            SetAlpha(rootsUI[i], 1f);
+        }
+
+        for (int i = 0; i < RootCount; i++)
+        {
+            SetAlpha(rootsUI[RootAmount - i], 0.5f);
+        }
     }
 
     public void LowerRootCooldown(float decreaseAmount)
