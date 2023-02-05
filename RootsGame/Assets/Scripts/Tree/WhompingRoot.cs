@@ -107,7 +107,7 @@ public class WhompingRoot : TreeAbilities
         float time = 0f;
         float duration = whompDelayAmount;
 
-        while(time < duration)
+        while(time < duration && activeEnemy != null)
         {
             float T = time / duration;
             Vector3 enemyPosition = activeEnemy.transform.position;
@@ -150,7 +150,7 @@ public class WhompingRoot : TreeAbilities
         Vector3 startPosition = activeEnemy.transform.position;
         Vector3 targetPosition = transform.position + (transform.forward * -25f);
 
-        while (time < duration)
+        while (time < duration && activeEnemy != null)
         {
             float T = time / duration;
             activeEnemy.transform.position = Vector3.Lerp(startPosition, targetPosition, T) + (Mathf.Sin(Mathf.PI * T) * heightMultiplier * Vector3.up);
