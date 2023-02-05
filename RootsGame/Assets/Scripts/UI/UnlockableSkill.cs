@@ -14,7 +14,7 @@ public class UnlockableSkill : MonoBehaviour, IPointerClickHandler
     [SerializeField] private bool lowerCooldown = false;
     [SerializeField] private float reduceRootCooldownAmount = 0;
 
-    [SerializeField] private Image abilityIcon = null;
+    [SerializeField] private SpriteRenderer abilityIcon = null;
     [SerializeField] private TreeAbilities ability = null;
 
     private bool isActive = false;
@@ -39,7 +39,9 @@ public class UnlockableSkill : MonoBehaviour, IPointerClickHandler
             abilityIcon.color = alpha;
 
             if (ability != null)
-                TreeController.Instance.UnlockNewAbility(ability);
+            {
+                AbilityController.Instance.SetNewAbility(ability);
+            }
 
             if(increaseAmount)
                 TreeController.Instance.IncreaseRootAmount(rootIncreaseAmount);

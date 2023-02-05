@@ -20,6 +20,7 @@ public class TreeController : MonoBehaviour
 
     [SerializeField] private List<Image> rootsUI = null;
     [SerializeField] private List<TreeAbilities> unlockedTreeAbilities = null;
+    [SerializeField] private List<TreeAbilities> allAbilities = null;
 
     private List<TreeAbilities> activeTreeAbilities = new List<TreeAbilities>();
     
@@ -37,8 +38,9 @@ public class TreeController : MonoBehaviour
             rootsUI[i].gameObject.SetActive(true);
         }
 
+        AbilityController.Instance.SetNewAbility(allAbilities[0]);
+        SetActiveAbility(allAbilities[0]);
         AbilityController.Instance.SetActiveOption(AbilityController.Instance.AbilityOptions[0]);
-        SetActiveAbility(unlockedTreeAbilities[0]);
     }
 
     private void OnDestroy()
@@ -56,7 +58,6 @@ public class TreeController : MonoBehaviour
         if (unlockedTreeAbilities.Contains(newUnlock))
             return;
 
-        AbilityController.Instance.SetNewAbility(newUnlock);
         unlockedTreeAbilities.Add(newUnlock);
     }
 
